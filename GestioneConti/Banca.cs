@@ -80,5 +80,15 @@ namespace GestioneConti
                 _ID = _conti.Count;   // poco oo ma funzionale
             }
         }
+
+        internal void Estingui(int id)
+        {
+            _conti.Remove(id);
+        }
+
+        internal void Preleva(int id, decimal importo)
+        {
+            _conti[id].Preleva(importo);
+        }
     }
 }

@@ -34,8 +34,8 @@ namespace GestioneConti
 
         public Conto(int id, string intestatario)
         {
-            Intestatario = intestatario;
             ID = id;
+            Intestatario = intestatario;
         }
 
         public void Versa(decimal importo)

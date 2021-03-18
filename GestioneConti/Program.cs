@@ -35,10 +35,10 @@ namespace GestioneConti
                         Versamento();
                         break;
                     case ConsoleKey.C:
-                        // Prelievo
+                        Prelievo();
                         break;
                     case ConsoleKey.D:
-                        // Estinzione
+                        Estinzione();
                         break;
                     case ConsoleKey.E:
                         VisualizzaSaldo();
@@ -65,6 +65,41 @@ namespace GestioneConti
                         break;
                 }
             } while (true);
+        }
+
+        private static void Estinzione()
+        {
+            Console.WriteLine();
+            int id;
+            do
+                Console.Write("Numero di conto da estinguere: ");
+            while (!int.TryParse(Console.ReadLine(), out id));
+
+            if (banca.Esiste(id))
+                banca.Estingui(id);
+            else
+                Console.WriteLine("Conto inesistente");
+        }
+
+        private static void Prelievo()
+        {
+            Console.WriteLine();
+            int id;
+            do
+                Console.Write("Numero di conto da cui prelevare: ");
+            while (!int.TryParse(Console.ReadLine(), out id));
+
+            if (banca.Esiste(id))
+            {
+                decimal importo;
+                do
+                    Console.Write("Importo da prelevare: ");
+                while (!decimal.TryParse(Console.ReadLine(), out importo));
+
+                banca.Preleva(id, importo);
+            }
+            else
+                Console.WriteLine("Conto inesistente");
         }
 
         private static void Deserializza()
