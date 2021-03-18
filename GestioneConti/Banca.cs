@@ -58,5 +58,15 @@ namespace GestioneConti
         {
             return _conti[id].Saldo;
         }
+
+        internal void Preleva(int id, decimal importo)
+        {
+            _conti[id].Preleva(importo);
+        }
+
+        internal void Estingui(int id)
+        {
+            _conti.Remove(id);
+        }
     }
 }

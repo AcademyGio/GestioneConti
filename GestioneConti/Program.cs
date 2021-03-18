@@ -33,10 +33,10 @@ namespace GestioneConti
                         Versamento();
                         break;
                     case '3':
-                        // Prelievo
+                        Prelievo();
                         break;
                     case '4':
-                        // Estinzione
+                        Estinzione();
                         break;
                     case '5':
                         VisualizzaSaldo();
@@ -57,6 +57,41 @@ namespace GestioneConti
                         break;
                 }
             } while (true);
+        }
+
+        private static void Estinzione()
+        {
+            Console.WriteLine();
+            int id;
+            do
+                Console.Write("Numero di conto da estinguere: ");
+            while (!int.TryParse(Console.ReadLine(), out id));
+
+            if (banca.Esiste(id))
+                banca.Estingui(id);
+            else
+                Console.WriteLine("Conto inesistente");
+        }
+
+        private static void Prelievo()
+        {
+            Console.WriteLine();
+            int id;
+            do
+                Console.Write("Numero di conto da cui prelevare: ");
+            while (!int.TryParse(Console.ReadLine(), out id));
+
+            if (banca.Esiste(id))
+            {
+                decimal importo;
+                do
+                    Console.Write("Importo da prelevare: ");
+                while (!decimal.TryParse(Console.ReadLine(), out importo));
+
+                banca.Preleva(id, importo);
+            }
+            else
+                Console.WriteLine("Conto inesistente");
         }
 
         private static void Salva()
