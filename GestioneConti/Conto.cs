@@ -15,7 +15,6 @@ namespace GestioneConti
     [Serializable]  // marco come serializzabile la classe conto
     class Conto
     {
-        internal static int _ID;
         public int ID { get; }
         public string Intestatario { get; } // con tutti i discorsi fatti
         public decimal Saldo { get; private set;}

@@ -76,7 +76,7 @@ namespace GestioneConti
             {
                 _conti = (Dictionary<int, Conto>)bf.Deserialize(fs);
 
-                Conto._ID = _conti.Count;   // poco oo ma funzionale
+                _ID = _conti.Count;   // poco oo ma funzionale
             }
         }
     }
