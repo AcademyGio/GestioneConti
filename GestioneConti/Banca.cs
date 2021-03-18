@@ -10,17 +10,14 @@ namespace GestioneConti
     {
         private Dictionary<int, Conto> _conti = new Dictionary<int, Conto>();
 
-        public string Prospetto
+        public string OttieniProspetto(Formato formato)
         {
-            get 
-            {
-                string s = "";
+            string s = "";
 
-                foreach (Conto c in _conti.Values)
-                    s += c.Prospetto + '\n';
+            foreach (Conto c in _conti.Values)
+                s += c.OttieniProspetto(formato) + '\n';
 
-                return s;
-            }
+            return s;
         }
 
         public decimal SaldoTotale 

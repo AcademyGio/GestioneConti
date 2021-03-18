@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace GestioneConti
 {
+    enum Formato
+    {
+        Plain,
+        CSV
+    }
+
     class Conto
     {
         private static int _ID;
@@ -13,11 +19,16 @@ namespace GestioneConti
         public string Intestatario { get; } // con tutti i discorsi fatti
         public decimal Saldo { get; private set;}
 
-        public string Prospetto
+        public string OttieniProspetto(Formato formato)
         {
-            get
+            switch (formato)
             {
-                return $"Conto: {ID}, Intestatario: {Intestatario}, Saldo: {Saldo}";
+                case Formato.Plain:
+                    return $"Conto: {ID}, Intestatario: {Intestatario}, Saldo: {Saldo}";
+                case Formato.CSV:
+                    return $"{ID};{Intestatario};{Saldo}";
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 

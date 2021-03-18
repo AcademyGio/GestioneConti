@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace GestioneConti
 {
@@ -20,6 +21,7 @@ namespace GestioneConti
                 Console.WriteLine("5. Saldo");
                 Console.WriteLine("6. Saldo totale di tutti i conti");
                 Console.WriteLine("7. Visualizza prospetto completo");
+                Console.WriteLine("8. Salva");
                 Console.WriteLine("0. Esci");
 
                 switch (Console.ReadKey().KeyChar)
@@ -45,6 +47,9 @@ namespace GestioneConti
                     case '7':
                         VisualizzaProspetto();
                         break;
+                    case '8':
+                        Salva();
+                        break;
                     case '0':
                         return;
                     default:
@@ -52,6 +57,21 @@ namespace GestioneConti
                         break;
                 }
             } while (true);
+        }
+
+        private static void Salva()
+        {
+            const string fileName = @"conti.csv";    // @ - verbatim string
+            Formato formato = Formato.CSV;  // chiedi all'utente il formato
+
+            using (StreamWriter sw = new StreamWriter(fileName))
+            {
+                sw.WriteLine(banca.OttieniProspetto(formato));
+                // utitlizzo sw
+
+                // sw.Close();
+                // alla fine del blocco using l'oggetto sw verrà correttamente rilasciato
+            }
         }
 
         private static void VisualizzaSaldoTotale()
@@ -75,7 +95,7 @@ namespace GestioneConti
         {
             Console.WriteLine();
             Console.WriteLine("Prospetto completo dei conti esistenti");
-            Console.WriteLine(banca.Prospetto);
+            Console.WriteLine(banca.OttieniProspetto(Formato.Plain));
         }
 
         private static void Versamento()
