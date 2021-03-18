@@ -32,10 +32,10 @@ namespace GestioneConti
             }
         }
 
-        public Conto(string intestatario)
+        public Conto(int id, string intestatario)
         {
             Intestatario = intestatario;
-            ID = ++_ID;
+            ID = id;
         }
 
         public void Versa(decimal importo)

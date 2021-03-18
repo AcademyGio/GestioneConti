@@ -10,6 +10,7 @@ namespace GestioneConti
 {
     class Banca
     {
+        private static int _ID;
         private Dictionary<int, Conto> _conti = new Dictionary<int, Conto>();
 
         public string OttieniProspetto(Formato formato)
@@ -42,7 +43,7 @@ namespace GestioneConti
 
         public Conto CreaConto(string intestatario)
         {
-            Conto c = new Conto(intestatario);
+            Conto c = new Conto(++_ID, intestatario);
 
             // associa ad ogni ID il conto corrispondente
             _conti.Add(c.ID, c);
