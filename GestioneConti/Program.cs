@@ -14,49 +14,71 @@ namespace GestioneConti
             do
             {
                 Console.WriteLine();
-                Console.WriteLine("1. Crea conto");
-                Console.WriteLine("2. Versamento");
-                Console.WriteLine("3. Prelievo");
-                Console.WriteLine("4. Estinzione conto");
-                Console.WriteLine("5. Saldo");
-                Console.WriteLine("6. Saldo totale di tutti i conti");
-                Console.WriteLine("7. Visualizza prospetto completo");
-                Console.WriteLine("8. Salva");
-                Console.WriteLine("0. Esci");
+                Console.WriteLine("a. Crea conto");
+                Console.WriteLine("b. Versamento");
+                Console.WriteLine("c. Prelievo");
+                Console.WriteLine("d. Estinzione conto");
+                Console.WriteLine("e. Saldo");
+                Console.WriteLine("f. Saldo totale di tutti i conti");
+                Console.WriteLine("g. Visualizza prospetto completo");
+                Console.WriteLine("h. Salva");
+                Console.WriteLine("i. Serializza");
+                Console.WriteLine("J. Deserializza");
+                Console.WriteLine("x. Esci");
 
-                switch (Console.ReadKey().KeyChar)
+                switch (Console.ReadKey().Key)
                 {
-                    case '1':
+                    case ConsoleKey.A:
                         CreaConto();
                         break;
-                    case '2':
+                    case ConsoleKey.B:
                         Versamento();
                         break;
-                    case '3':
+                    case ConsoleKey.C:
                         // Prelievo
                         break;
-                    case '4':
+                    case ConsoleKey.D:
                         // Estinzione
                         break;
-                    case '5':
+                    case ConsoleKey.E:
                         VisualizzaSaldo();
                         break;
-                    case '6':
+                    case ConsoleKey.F:
                         VisualizzaSaldoTotale();
                         break;
-                    case '7':
+                    case ConsoleKey.G:
                         VisualizzaProspetto();
                         break;
-                    case '8':
+                    case ConsoleKey.H:
                         Salva();
                         break;
-                    case '0':
+                    case ConsoleKey.I:
+                        Serializza();
+                        break;
+                    case ConsoleKey.J:
+                        Deserializza();
+                        break;
+                    case ConsoleKey.X:
                         return;
                     default:
                         Console.WriteLine("Scelta non valida");
                         break;
                 }
             } while (true);
+        }
+
+        private static void Deserializza()
+        {
+            const string fileName = @"conti.bin";    // @ - verbatim string
+
+            banca.Deserializza(fileName);
+        }
+
+        private static void Serializza()
+        {
+            const string fileName = @"conti.bin";    // @ - verbatim string
+
+            banca.Serializza(fileName);
         }
 
         private static void Salva()

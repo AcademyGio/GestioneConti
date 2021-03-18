@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace GestioneConti
 {
@@ -56,6 +58,26 @@ namespace GestioneConti
         public decimal OttieniSaldo(int id)
         {
             return _conti[id].Saldo;
+        }
+
+        internal void Serializza(string fileName)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            using (FileStream fs = new FileStream(fileName, FileMode.Create))
+            {
+                bf.Serialize(fs, _conti);
+            }
+        }
+
+        internal void Deserializza(string fileName)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            using (FileStream fs = new FileStream(fileName, FileMode.Open))
+            {
+                _conti = (Dictionary<int, Conto>)bf.Deserialize(fs);
+
+                Conto._ID = _conti.Count;   // poco oo ma funzionale
+            }
         }
     }
 }

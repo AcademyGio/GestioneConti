@@ -12,9 +12,10 @@ namespace GestioneConti
         CSV
     }
 
+    [Serializable]  // marco come serializzabile la classe conto
     class Conto
     {
-        private static int _ID;
+        internal static int _ID;
         public int ID { get; }
         public string Intestatario { get; } // con tutti i discorsi fatti
         public decimal Saldo { get; private set;}
