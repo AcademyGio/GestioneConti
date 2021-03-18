@@ -14,7 +14,6 @@ namespace GestioneConti
 
     class Conto
     {
-        private static int _ID;
         public int ID { get; }
         public string Intestatario { get; } // con tutti i discorsi fatti
         public decimal Saldo { get; private set;}
@@ -32,10 +31,10 @@ namespace GestioneConti
             }
         }
 
-        public Conto(string intestatario)
+        public Conto(int id, string intestatario)
         {
+            ID = id;
             Intestatario = intestatario;
-            ID = ++_ID;
         }
 
         public void Versa(decimal importo)
